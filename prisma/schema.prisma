@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Ou MySQL, SQLite, etc.
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+  VET
+}
+
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password      String
+  role          Role     @default(USER) // Define se é ADMIN, USER ou VET
+  pets          Pet[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([email]) // Indexação para buscas por email
+}
+
+model Pet {
+  id            String    @id @default(uuid())
+  name          String
+  ownerId       String
+  locations     Location[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  owner         User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId]) // Indexação para buscas por dono
+}
+
+model Location {
+  id        String   @id @default(uuid())
+  petId     String
+  latitude  Float
+  longitude Float
+  timestamp DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  pet       Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  @@index([petId, timestamp]) // Indexação para melhorar buscas
+}
+

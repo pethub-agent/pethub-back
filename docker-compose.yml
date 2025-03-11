@@ -1,0 +1,31 @@
+services:
+  # Serviço do banco de dados PostgreSQL
+  db:
+    image: postgres:13
+    container_name: nestjs_db
+    environment:
+      POSTGRES_USER: meu_usuario
+      POSTGRES_PASSWORD: minha_senha
+      POSTGRES_DB: meu_banco
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Serviço do NestJS
+  app:
+    build: .
+    container_name: nestjs_app
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://meu_usuario:minha_senha@db:5432/meu_banco?schema=public"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+# Volume para persistir os dados do PostgreSQL
+volumes:
+  postgres_data:
