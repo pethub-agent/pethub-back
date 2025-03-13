@@ -1,12 +1,14 @@
 # SaaS para Animais de Estimação
 
+# [MVP](./topicos/mvp.md)
+
 ## Tecnologias
 
 **PWA**, **Angular**, **NestJS**
 
 ## Funcionalidades Principais
 
-### 1. [Rastreamento](./rastreamento.md) 📍
+### 1. [Rastreamento](./topicos/rastreamento.md) 📍
 
 - **O que incluir?** Cadastro do animal, localização em tempo real (se viável), histórico de movimentação.
 - **Tecnologias:** GPS integrado (se houver hardware), APIs de localização (Google Maps, OpenStreetMap).

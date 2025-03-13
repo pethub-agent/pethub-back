@@ -3,14 +3,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql" // Ou MySQL, SQLite, etc.
+  provider = "postgresql" 
   url      = env("DATABASE_URL")
 }
 
 enum Role {
   ADMIN
   USER
-  VET
+  VETERINARIAN
 }
 
 model User {
@@ -20,6 +20,7 @@ model User {
   password      String
   role          Role     @default(USER) // Define se é ADMIN, USER ou VET
   pets          Pet[]
+  userPets      UserPet[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   
@@ -31,12 +32,25 @@ model Pet {
   name          String
   ownerId       String
   locations     Location[]
+  userPets      UserPet[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
   owner         User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 
   @@index([ownerId]) // Indexação para buscas por dono
+}
+
+model UserPet {
+  userId String
+  petId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pet    Pet  @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  @@id([userId, petId]) // Chave composta para evitar duplicidade
 }
 
 model Location {
@@ -50,6 +64,6 @@ model Location {
 
   pet       Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
 
-  @@index([petId, timestamp]) // Indexação para melhorar buscas
+  @@index([petId, timestamp(sort: Desc)]) // Indexação para melhorar buscas
 }
 
