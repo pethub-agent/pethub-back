@@ -1,3 +1,15 @@
+# MVP - Funcionalidades
+
+| Funcionalidade                  | Descrição                                                                                               | Prioridade | Status  |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------- | ------- |
+| **Cadastro de Animais**         | Permitir que o usuário cadastre seus animais, com informações como nome, idade, tipo de animal, etc.    | Alta       | A fazer |
+| **Login**                       | Funcionalidade de login para os usuários, permitindo o acesso à conta e funcionalidades personalizadas. | Alta       | A fazer |
+| **Controle de Alimentação**     | Registro e controle dos horários de alimentação, tipo de ração, quantidade, e notas adicionais.         | Alta       | A fazer |
+| **Histórico de Saúde**          | Registro de histórico médico do animal, incluindo consultas veterinárias, vacinas, tratamentos.         | Alta       | A fazer |
+| **Lembretes**                   | Enviar notificações para lembrar o usuário de tarefas importantes (ex.: vacinação, remédios, etc.).     | Alta       | A fazer |
+| **Agendamento de Serviços**     | Permitir que o usuário agende serviços como consultas veterinárias, banhos, tosas, etc.                 | Média      | A fazer |
+| **Monitoramento de Atividades** | Acompanhar atividades físicas do animal, como caminhadas, brincadeiras e exercícios.                    | Média      | A fazer |
+
 # Funcionalidades Essenciais para o MVP
 
 ## 1. Controle de Alimentação

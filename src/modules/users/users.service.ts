@@ -8,27 +8,30 @@ import { UsersRepository } from "./repositories/users.repository/users.repositor
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<Partial<User>> {
     return this.usersRepository.create(createUserDto);
   }
 
-  async findAll(): Promise<User[]> {
+  async findAll(): Promise<Partial<User>[]> {
     return this.usersRepository.findAll();
   }
 
-  async findOneById(id: string): Promise<User | null> {
+  async findOneById(id: string): Promise<Partial<User> | null> {
     return this.usersRepository.findOneById(id);
   }
 
-  async findOneByEmail(email: string): Promise<User | null> {
+  async findOneByEmail(email: string): Promise<Partial<User> | null> {
     return this.usersRepository.findOneByEmail(email);
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<Partial<User>> {
     return this.usersRepository.update(id, updateUserDto);
   }
 
-  async remove(id: string): Promise<User> {
+  async remove(id: string): Promise<Partial<User>> {
     return this.usersRepository.remove(id);
   }
 }

@@ -1,9 +1,9 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { PasswordUtils } from '../../common/utils/password.utils';
-import { UsersService } from '../users/users.service';
-import { LoginDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { PasswordUtils } from "../../common/utils/password.utils";
+import { UsersService } from "../users/users.service";
+import { LoginDto } from "./dto/login.dto";
+import { RegisterDto } from "./dto/register.dto";
 
 @Injectable()
 export class AuthService {
@@ -24,7 +24,7 @@ export class AuthService {
   async login(loginDto: LoginDto) {
     const user = await this.validateUser(loginDto.email, loginDto.password);
     if (!user) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException("Invalid credentials");
     }
     const payload = { email: user.email, sub: user.id, role: user.role };
     return {
@@ -34,6 +34,9 @@ export class AuthService {
 
   async register(registerDto: RegisterDto) {
     const hashedPassword = PasswordUtils.hash(registerDto.password);
-    return this.usersService.create({ ...registerDto, password: hashedPassword });
+    return this.usersService.create({
+      ...registerDto,
+      password: hashedPassword,
+    });
   }
 }
