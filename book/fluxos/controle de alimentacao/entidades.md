@@ -1,0 +1,8 @@
+| Entidade               | Atributos Principais (MVP)                                                                         | Observações                                                            |
+| ---------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| **Pet**                | id, nome, espécie, raça, peso, tutorId                                                             | Você provavelmente já tem isso na base do seu SaaS.                    |
+| **Tutor (User)**       | id, nome, email, telefone                                                                          | Usuário já cadastrado.                                                 |
+| **PlanoAlimentar**     | id, petId, nome (ex.: “Dieta Light”), dataInicio, dataFim (opcional), ativo (bool), criadoEm       | Pode ter vários planos ao longo do tempo, mas apenas um ativo por pet. |
+| **RefeicaoProgramada** | id, planoAlimentarId, horario, tipo (ração, petisco, suplemento), quantidade, unidadeMedida (g/ml) | O plano alimentar define os horários e tipos de alimentação.           |
+| **RefeicaoRegistrada** | id, petId, dataHora, tipo, quantidade, unidadeMedida, origem (manual / smart-feeder)               | Quando o tutor registra ou o feeder envia o log de refeição.           |
+| **Notificacao**        | id, userId, mensagem, tipo (alerta, lembrete), enviadaEm, lida (bool)                              | Push ou histórico de alertas.                                          |

@@ -7,8 +7,10 @@ import { DatabaseModule } from "src/shared/database/database.module";
 import appConfig from "../config/app.config";
 import jwtConfig from "../config/jwt.config";
 import prismaConfig from "../config/prisma.config";
+import { AppController } from "./app.controller";
 
 @Module({
+  controllers: [AppController],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,

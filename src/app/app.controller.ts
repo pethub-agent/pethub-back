@@ -1,10 +1,11 @@
 import { Controller, Get } from "@nestjs/common";
+import { Public } from "src/common/decorators/roles/public.decorator";
 
 @Controller()
 export class AppController {
-
-  @Get('health')
+  @Public()
+  @Get("health")
   async healthCheck() {
-    return 'OK'
+    return "OK";
   }
 }
